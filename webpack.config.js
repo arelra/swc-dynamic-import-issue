@@ -1,11 +1,12 @@
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
 
+const useSWC = true;
+
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const swcConfig = require('./.swcrc.json');
 
 const isProduction = process.env.NODE_ENV == "production";
-
-const swcConfig = require('./.swcrc.json');
 
 const targets = {
   chrome: '67.0.0',
@@ -17,8 +18,6 @@ const targets = {
   samsung: '11.1.0'
 };
 
-const useSWC = false;
-
 const babelLoader = {
   loader: 'babel-loader',
   options: {
@@ -28,6 +27,7 @@ const babelLoader = {
         {
           bugfixes: true,
           debug: true,
+          modules: false,
           targets,
         },
       ],
@@ -49,6 +49,9 @@ const swcLoader = {
 };
 
 const config = {
+  experiments: {
+    topLevelAwait: true,
+  },
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -63,6 +66,7 @@ const config = {
     rules: [
       {
         test: /\.(js)$/i,
+        type: "javascript/esm",        
         use: [ useSWC ? swcLoader : babelLoader ],
       },
       {
