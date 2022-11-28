@@ -1,6 +1,6 @@
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
 
-const useSWC = true;
+const useSWC = false;
 
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -12,9 +12,9 @@ const targets = {
   chrome: '67.0.0',
   edge: '91.0.0',
   firefox: '78.0.0',
-  ios: '10.3.0',
+  ios: '11.0.0',
   opera: '64.0.0',
-  safari: '10.1.0',
+  safari: '11.1.0',
   samsung: '11.1.0'
 };
 
